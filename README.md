@@ -1,71 +1,210 @@
-# Assignment 1: Food Waste Reduction Feature
+# Food Expiry Tracker
 
-**Background:**
-At Expyr, we're committed to helping users reduce food waste. While our app currently tracks food items and their expiry dates, we want to understand what happens to these items. Did they get consumed in time? Were they wasted? This data can help users better understand their consumption patterns.
+A modern Flutter application for tracking food items and their expiry dates. Built with Material Design 3 and clean architecture principles.
 
-**Your Task:**
-Design and implement a feature that allows users to mark food items as consumed. This should help users:
-1. Keep track of what they've actually eaten
-2. Distinguish between consumed items and potentially wasted items
-3. Review their consumption history
+## Features
 
-**Core Requirements:**
-1. Users should be able to mark any food item as "consumed"
-2. Consumed items should be moved to a separate list/view
-3. The UI should clearly distinguish between available and consumed items
-4. Users should be able to view their consumption history
+### Item Management
 
-**Technical Notes:**
-- The app uses Provider for state management
-- A mock data service is provided to simulate backend operations
-- Focus on maintaining a clean, intuitive user experience
+- Track available food items with expiry dates
+- Monitor expired items in a separate tab
+- Keep history of consumed items
+- Undo/Redo support for item actions
+- Multi-location storage tracking (Fridge, Freezer, Pantry, Counter)
+- Quantity tracking for packaged items
+- Smart expiry date handling with assumed dates
 
-**Evaluation Criteria:**
-1. **Architecture & Design (40%)**
-   - How well does your solution fit into the existing architecture?
-   - How maintainable and extensible is your code?
-   - How do you handle edge cases?
+### Smart UI Components
 
-2. **User Experience (30%)**
-   - Is the feature intuitive to use?
-   - How do you handle loading states and errors?
-   - Are the UI transitions smooth?
+- Custom animated bottom navigation bar with floating design
+- Responsive item cards with expiry indicators and status colors
+- Interactive item details sheet with edit capabilities
+- Confirmation dialogs for expired item consumption
+- Snackbar notifications with undo actions
+- Loading states and error handling
 
-3. **Code Quality (30%)**
-   - Is your code well-organized and documented?
-   - Are your commits clear and logical?
-   - How well do you handle error cases?
+### Design & UX
 
+- Material Design 3 implementation
+- Custom theme with DM Sans font
+- Consistent elevation and shadows
+- Smooth animations and transitions
+- Color-coded status indicators
+- Intuitive navigation system
 
-**Getting Started:**
-1. The base code provides a simple food tracking app
-2. Run `flutter run` to see the current state
+## Technical Details
 
-**Submission:**
-- Include a brief explanation of your design decisions
-- Deadline: 1 day from assignment date
+### Architecture
 
-**Questions to Consider:**
-1. How will users distinguish between available and consumed items?
-2. What happens to expiry tracking once an item is marked as consumed?
-3. How would you handle accidental "consumed" marks?
-4. How might this feature evolve in future versions?
+```
+lib/
+├── constants/
+│   ├── app_constants.dart    // App-wide constants
+│   └── ui_constants.dart     // UI-specific values
+├── models/
+│   └── item_data.dart       // Data models
+├── providers/
+│   └── items_provider.dart  // State management
+├── screens/
+│   ├── items_screen.dart    // Main screen
+│   └── tabs/               // Tab views
+├── services/
+│   └── mock_firestore_service.dart  // Data layer
+├── themes/
+│   └── app_theme.dart       // Theme configuration
+└── widgets/
+    ├── navigation/
+    │   └── custom_bottom_nav_bar.dart
+    └── item_card.dart
+```
 
-Feel free to ask questions if anything is unclear. Good luck!
+### Key Components
 
+#### State Management
 
-Assignment/1/
-├── lib/
-│   ├── models/
-│   │   └── item_data.dart
-│   ├── providers/
-│   │   └── items_provider.dart
-│   ├── screens/
-│   │   ├── consumed_items_screen.dart  (NEW)
-│   │   └── dashboard_screen.dart      (Simplified, for context)
-│   ├── widgets/
-│   │   └── item_card.dart             (Simplified, for context)
-│   ├── services/
-│   │   └── mock_firestore_service.dart (NEW)
-│   └── main.dart
-└── README.md
+```dart
+class ItemsProvider with ChangeNotifier {
+  final FirestoreService _firestoreService;
+  List<ItemData> _items = [];
+  // Reactive state management with error handling
+}
+```
+
+#### Custom Bottom Navigation
+
+```dart
+class CustomBottomNavBar extends StatelessWidget {
+  // Animated container with Material Design 3
+  // Dynamic icon sizing and transitions
+}
+```
+
+#### Theme System
+
+```dart
+class AppTheme {
+  static const Color iconGrey = Color(0xFF757575);
+  static const Color textGrey = Color(0xFF616161);
+
+  static ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
+    // Comprehensive theming system
+  );
+}
+```
+
+## Getting Started
+
+1. **Prerequisites**
+
+   - Flutter SDK >=3.0.0
+   - Dart SDK >=3.0.0
+
+2. **Installation**
+
+   ```bash
+   git clone [repository-url]
+   cd food-tracker
+   flutter pub get
+   ```
+
+3. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+## Dependencies
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.1 # State management
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+```
+
+## Development Features
+
+- **State Management**: Provider pattern with ChangeNotifier
+- **Mock Services**: Simulated backend with realistic delays
+- **Error Handling**: Comprehensive error states and user feedback
+- **Animations**: Custom transitions and loading states
+- **Theme System**: Material Design 3 with custom components
+
+## Best Practices
+
+- Clean Architecture principles
+- Separation of concerns
+- Reactive state management
+- Widget composition and reusability
+- Type safety throughout
+- Performance optimization
+- Responsive design patterns
+- Error boundary implementation
+- Consistent code formatting
+- Comprehensive error handling
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Design Decisions
+
+### Architecture & State Management
+
+- **Provider Pattern**: Chosen for its simplicity and efficiency in managing app-wide state without unnecessary complexity
+- **Clean Architecture**: Separated concerns into models, providers, services, and UI layers for better maintainability
+- **Mock Service Layer**: Implemented to simulate real-world API delays and error scenarios
+
+### UI/UX Decisions
+
+- **Bottom Navigation**: Custom floating design for better visual hierarchy and modern feel
+- **Card-based Layout**: Used for consistent item presentation and clear visual separation
+- **Color Coding**:
+  - Grey for normal items
+  - Red for expired items
+  - Green for consumed items
+  - Subtle backgrounds for better contrast
+
+### Feature Implementation
+
+1. **Expiry Tracking**:
+
+   - Maintains expiry dates even after consumption
+   - Shows warning dialogs for expired items
+   - Allows past date selection for accurate tracking
+
+2. **Item States**:
+
+   - Available: Active items in inventory
+   - Consumed: Items marked as used
+   - Expired: Items past their expiry date
+   - Each state has distinct UI treatment
+
+3. **Undo/Redo Support**:
+
+   - Implemented for critical actions
+   - Snackbar notifications with undo option
+   - State preservation during undo operations
+
+4. **Error Handling**:
+   - Comprehensive error states
+   - User-friendly error messages
+   - Graceful fallbacks for edge cases
+
+### Performance Considerations
+
+- Optimized list rendering
+- Minimal rebuilds using `Consumer`
+- Efficient state updates
+- Smooth animations with hardware acceleration
+
+These decisions focus on creating a maintainable, user-friendly, and performant application while following Flutter best practices.
