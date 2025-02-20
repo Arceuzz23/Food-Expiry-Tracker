@@ -1,7 +1,7 @@
-import 'package:expyr_assignment_1/widgets/item_details_sheet.dart';
 import 'package:flutter/material.dart';
 import '../../models/item_data.dart';
 import '../../widgets/item_card.dart';
+import '../../widgets/item_details_sheet.dart';
 
 class AvailableItemsTab extends StatelessWidget {
   final List<ItemData> items;

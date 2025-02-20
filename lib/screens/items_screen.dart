@@ -1,14 +1,15 @@
-import 'package:expyr_assignment_1/screens/tabs/available_items_tab.dart';
-import 'package:expyr_assignment_1/screens/tabs/consumed_items_tab.dart';
-import 'package:expyr_assignment_1/screens/tabs/expired_items_tab.dart';
-import 'package:expyr_assignment_1/themes/app_theme.dart';
+
 import 'package:flutter/material.dart';
+import 'package:food_expiry_tracker/screens/tabs/available_items_tab.dart';
+import 'package:food_expiry_tracker/screens/tabs/consumed_items_tab.dart';
+import 'package:food_expiry_tracker/screens/tabs/expired_items_tab.dart';
 import 'package:provider/provider.dart';
 import '../models/item_data.dart';
 import '../providers/items_provider.dart';
 import '../widgets/dialogs/consume_confirmation_dialog.dart';
 import '../widgets/item_details_sheet.dart';
 import '../widgets/navigation/custom_bottom_nav_bar.dart';
+
 
 class ItemsScreen extends StatefulWidget {
   const ItemsScreen({super.key});

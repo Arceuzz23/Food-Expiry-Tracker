@@ -7,24 +7,39 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:expyr_assignment_1/main.dart';
+import 'package:food_expiry_tracker/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('App loads and shows available items tab',
+      (WidgetTester tester) async {
+    // Build our app and trigger a frame
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify app title is shown
+    expect(find.text('Available Items'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Verify bottom navigation items are present
+    expect(find.text('Available'), findsOneWidget);
+    expect(find.text('Consumed'), findsOneWidget);
+    expect(find.text('Expired'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify navigation icons are present
+    expect(find.byIcon(Icons.food_bank), findsOneWidget);
+    expect(find.byIcon(Icons.history), findsOneWidget);
+    expect(find.byIcon(Icons.warning_amber), findsOneWidget);
+  });
+
+  testWidgets('Navigation works correctly', (WidgetTester tester) async {
+    await tester.pumpWidget(const MyApp());
+
+    // Navigate to Consumed tab
+    await tester.tap(find.text('Consumed'));
+    await tester.pumpAndSettle();
+    expect(find.text('Consumed Items'), findsOneWidget);
+
+    // Navigate to Expired tab
+    await tester.tap(find.text('Expired'));
+    await tester.pumpAndSettle();
+    expect(find.text('Expired Items'), findsOneWidget);
   });
 }

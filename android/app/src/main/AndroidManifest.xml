@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="expyr_assignment_1"
+        android:label="Food Expiry"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

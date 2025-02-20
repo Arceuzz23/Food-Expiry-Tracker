@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'constants/app_constants.dart';
 import 'themes/app_theme.dart';
 import 'providers/items_provider.dart';
 import 'screens/items_screen.dart';
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       create: (_) => ItemsProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: AppConstants.appName,
+        title: 'Food Expiry',
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         home: const ItemsScreen(),

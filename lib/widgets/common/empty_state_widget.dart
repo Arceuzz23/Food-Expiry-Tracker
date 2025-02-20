@@ -1,5 +1,7 @@
-import 'package:expyr_assignment_1/constants/ui_constants.dart';
+
 import 'package:flutter/material.dart';
+import '../../constants/ui_constants.dart';
+
 
 class EmptyStateWidget extends StatelessWidget {
   final IconData icon;

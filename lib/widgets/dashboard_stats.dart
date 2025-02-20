@@ -1,5 +1,6 @@
-import 'package:expyr_assignment_1/models/item_data.dart';
+
 import 'package:flutter/material.dart';
+import '../models/item_data.dart';
 
 class DashboardStats extends StatelessWidget {
   final List<ItemData> items;
