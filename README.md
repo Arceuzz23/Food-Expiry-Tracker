@@ -31,8 +31,27 @@ A modern Flutter application for tracking food items and their expiry dates. Bui
 - Smooth animations and transitions
 - Color-coded status indicators
 - Intuitive navigation system
+- Responsive layout with MediaQuery
+- Dynamic sizing for different screen sizes
+- Adaptive UI elements and typography
+- Consistent spacing and proportions
 
 ## Technical Details
+
+### Responsive Design
+
+```dart
+class Responsive {
+  // Screen dimensions
+  static double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+  static double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+
+  // Dynamic sizing
+  static double defaultPadding(BuildContext context) => screenWidth(context) * 0.04;
+  static double titleSize(BuildContext context) => screenWidth(context) * 0.055;
+  static double cardHeight(BuildContext context) => screenHeight(context) * 0.12;
+}
+```
 
 ### Architecture
 
@@ -40,6 +59,7 @@ A modern Flutter application for tracking food items and their expiry dates. Bui
 lib/
 ├── constants/
 │   ├── app_constants.dart    // App-wide constants
+│   ├── responsive_constants.dart  // Responsive sizing
 │   └── ui_constants.dart     // UI-specific values
 ├── models/
 │   └── item_data.dart       // Data models
@@ -134,6 +154,7 @@ dev_dependencies:
 - **Error Handling**: Comprehensive error states and user feedback
 - **Animations**: Custom transitions and loading states
 - **Theme System**: Material Design 3 with custom components
+- **Responsive Design**: MediaQuery implementation
 
 ## Best Practices
 
@@ -208,3 +229,22 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Smooth animations with hardware acceleration
 
 These decisions focus on creating a maintainable, user-friendly, and performant application while following Flutter best practices.
+
+### Responsive Features
+
+1. **Dynamic Sizing**
+
+   - Screen-aware dimensions
+   - Proportional spacing
+   - Flexible layouts
+
+2. **Adaptive Components**
+
+   - Responsive text sizing
+   - Dynamic card heights
+   - Flexible navigation bar
+
+3. **Layout Considerations**
+   - Safe area handling
+   - Notch compatibility
+   - Keyboard adjustments
