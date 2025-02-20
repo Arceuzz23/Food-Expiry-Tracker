@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../themes/app_theme.dart';
+import '../../constants/responsive_constants.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -16,7 +17,11 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      height: kBottomNavigationBarHeight,
+      margin: EdgeInsets.symmetric(
+        horizontal: Responsive.defaultMargin(context),
+        vertical: 8,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
         boxShadow: [
@@ -35,8 +40,8 @@ class CustomBottomNavBar extends StatelessWidget {
           backgroundColor: Colors.white,
           selectedItemColor: Theme.of(context).primaryColor,
           unselectedItemColor: AppTheme.iconGrey,
-          selectedFontSize: 12,
-          unselectedFontSize: 12,
+          selectedFontSize: 10,
+          unselectedFontSize: 10,
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: true,
           showUnselectedLabels: true,
@@ -52,32 +57,12 @@ class CustomBottomNavBar extends StatelessWidget {
 
   BottomNavigationBarItem _buildNavItem(NavItem item, bool isSelected) {
     return BottomNavigationBarItem(
-      icon: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppTheme.iconGrey.withOpacity(0.1)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Icon(
-          item.icon,
-          size: isSelected ? 28 : 24,
-        ),
-      ),
+      icon: Icon(item.icon, size: 24),
       activeIcon: Builder(
-        builder: (context) => Container(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Icon(
-            item.icon,
-            size: 28,
-            color: Theme.of(context).primaryColor,
-          ),
+        builder: (context) => Icon(
+          item.icon,
+          size: 24,
+          color: Theme.of(context).primaryColor,
         ),
       ),
       label: item.label,

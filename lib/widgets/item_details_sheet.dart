@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/item_data.dart';
 import '../providers/items_provider.dart';
 import '../themes/app_theme.dart';
 import '../constants/ui_constants.dart';
+import '../constants/responsive_constants.dart';
 
 class ItemDetailsSheet extends StatefulWidget {
   final ItemData item;
@@ -72,8 +72,8 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet>
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: Theme.of(context).colorScheme.copyWith(
-              surface: Colors.white,
-            ),
+                  surface: Colors.white,
+                ),
           ),
           child: child!,
         );
@@ -122,6 +122,11 @@ class _ItemDetailsSheetState extends State<ItemDetailsSheet>
     return FadeTransition(
       opacity: _animation,
       child: Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.85,
+          minHeight: MediaQuery.of(context).size.height * 0.3,
+        ),
+        padding: EdgeInsets.all(Responsive.defaultPadding(context)),
         decoration: BoxDecoration(
           color: theme.scaffoldBackgroundColor,
           borderRadius: UIConstants.borderRadius,

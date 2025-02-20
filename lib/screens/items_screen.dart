@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:food_expiry_tracker/screens/tabs/available_items_tab.dart';
 import 'package:food_expiry_tracker/screens/tabs/consumed_items_tab.dart';
@@ -9,7 +8,7 @@ import '../providers/items_provider.dart';
 import '../widgets/dialogs/consume_confirmation_dialog.dart';
 import '../widgets/item_details_sheet.dart';
 import '../widgets/navigation/custom_bottom_nav_bar.dart';
-
+import '../constants/responsive_constants.dart';
 
 class ItemsScreen extends StatefulWidget {
   const ItemsScreen({super.key});
@@ -147,17 +146,13 @@ class _ItemsScreenState extends State<ItemsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: Responsive.navBarHeight(context),
         title: Text(
           _getTitle(),
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+                fontSize: Responsive.titleSize(context),
               ),
         ),
-        centerTitle: false,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
       ),
       body: Consumer<ItemsProvider>(
         builder: (context, provider, child) {

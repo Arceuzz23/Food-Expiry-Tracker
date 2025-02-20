@@ -4,6 +4,7 @@ import 'package:shimmer/shimmer.dart';
 import '../models/item_data.dart';
 import '../providers/items_provider.dart';
 import '../themes/app_theme.dart';
+import '../constants/responsive_constants.dart';
 
 class ItemCard extends StatelessWidget {
   final ItemData item;
@@ -29,7 +30,11 @@ class ItemCard extends StatelessWidget {
     final isLoading = provider.loading && provider.processingItemId == item.id;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      height: Responsive.cardHeight(context),
+      margin: EdgeInsets.symmetric(
+        horizontal: Responsive.defaultMargin(context),
+        vertical: Responsive.defaultMargin(context) * 0.5,
+      ),
       decoration: AppTheme.cardDecoration.copyWith(
         border: Border(
           left: BorderSide(
